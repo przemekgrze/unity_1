@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using UnityEngine.Events;
-
 
 public class Cash0408 : MonoBehaviour
 {
@@ -13,7 +13,6 @@ public class Cash0408 : MonoBehaviour
     public int Aktywnosc;
     public Cash0408 zarobekScript;
     public UnityEvent onZarobekStart;
-
 
     bool PracaFizyczna = true;
     bool WyjazdDubai = true;
