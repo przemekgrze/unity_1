@@ -25,8 +25,11 @@ public class Cash0408 : MonoBehaviour
     // Funkcja g³ówna
     public void StartMe()
     {
-        //zarobekScript.StartMe();
-        //int cashValue = zarobekScript.Cash;
+        if (zarobekScript != null)
+        {
+            zarobekScript.StartMe();
+            int cashValue = zarobekScript.Cash;
+        }
         onZarobekStart?.Invoke();
         StartCoroutine(Loopings());
     }
