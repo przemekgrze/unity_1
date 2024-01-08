@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     public Cash0408 cashScript;
-    private Zarobek zarobekScript;
+    private Cash0408 zarobekScript;
     int Cash;
     int Life;
     int PracaFizyczna;
@@ -14,12 +15,11 @@ public class GameManager : MonoBehaviour
     public UnityEvent onGameManagerStart;
 
     private void Start()
-
     {
 
         // Tworzymy instancjê skryptu Zarobek i przypisujemy do zmiennej zarobekScript
-        zarobekScript = gameObject.AddComponent<Zarobek>();
-        zarobekScript = GetComponent<Zarobek>();
+        zarobekScript = gameObject.AddComponent<Cash0408>();
+        zarobekScript = GetComponent<Cash0408>();
 
         // Inicjalizacja gry
         InitializeGame();
@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
         zarobekScript.Body = 100;
         zarobekScript.Aktywnosc = 100;
 
-        Debug.Log(zarobekScript.Cash);
-        Debug.Log(zarobekScript.Life);
+        Debug.Log($"Initialize:<color=yellow>{zarobekScript.Cash}</color>");
+        Debug.Log($"Initialize:<color=yellow>{zarobekScript.Life}</color>");
 
         // Uruchomienie metody StartMe() w skrypcie Zarobek
         zarobekScript.StartMe();

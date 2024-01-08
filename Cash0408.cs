@@ -5,13 +5,13 @@ using System;
 using UnityEngine.Events;
 
 
-public class Zarobek : MonoBehaviour
+public class Cash0408 : MonoBehaviour
 {
     public int Cash;
     public int Life;
     public int Body;
     public int Aktywnosc;
-    public Zarobek zarobekScript;
+    public Cash0408 zarobekScript;
     public UnityEvent onZarobekStart;
 
 
@@ -26,11 +26,13 @@ public class Zarobek : MonoBehaviour
     // Funkcja g³ówna
     public void StartMe()
     {
-        zarobekScript.StartMe();
-        int cashValue = zarobekScript.Cash;
-        onZarobekStart.Invoke();
-
-
+        //zarobekScript.StartMe();
+        //int cashValue = zarobekScript.Cash;
+        onZarobekStart?.Invoke();
+        StartCoroutine(Loopings());
+    }
+    IEnumerator Loopings()
+    {
         // pêtla nieskoñczona, w której gracz mo¿e wykonywaæ ró¿ne akcje, a¿ do momentu wyjœcia z gry
         while (true)
         {
@@ -41,7 +43,7 @@ public class Zarobek : MonoBehaviour
             Console.WriteLine("4. Spó³ka na Malcie/Cyprze");
 
             int opcja = Convert.ToInt32(Console.ReadLine());
-
+            Debug.Log($"Line:<color=yellow>{opcja}</color>");
             switch (opcja)
             {
                 case 1:
@@ -103,6 +105,7 @@ public class Zarobek : MonoBehaviour
                     Debug.Log("Niepoprawna opcja. Spróbuj ponownie.");
                     break;
             }
+            yield return new WaitForSeconds(1);
         }
     }
 }
