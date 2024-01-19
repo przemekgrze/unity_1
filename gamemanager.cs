@@ -23,17 +23,34 @@ public class GameManager : MonoBehaviour
         Body = 0;
         Mood = 100;
 
-        CastText.text = "Cash" + Cash;
+        zarobekScript = cashScript;
+
+        // Upewnij siê, ¿e zarobekScript nie jest null przed u¿yciem
+        if (zarobekScript != null)
+        {
+            zarobekScript.Cash = 0;
+            zarobekScript.Life = 100;
+            zarobekScript.Body = 100;
+            zarobekScript.Aktywnosc = 100;
+
+
+
+            Debug.Log($"Initialize:<color=yellow>{zarobekScript.Cash}</color>");
+            Debug.Log($"Initialize:<color=yellow>{zarobekScript.Life}</color>");
+
+            // Uruchomienie metody StartMe() w skrypcie Zarobek
+            zarobekScript.StartMe();
+        }
+        else
+        {
+            Debug.LogError("ZarobekScript nie zosta³ znaleziony!");
+        }
 
         Debug.Log(Cash);
         Debug.Log(Life);
         Debug.Log(Mood);
         Debug.Log(PracaFizyczna);
         Debug.Log(Body);
-
-        // Tworzymy instancjê skryptu Zarobek i przypisujemy do zmiennej zarobekScript
-        zarobekScript = gameObject.AddComponent<Cash0408>();
-        zarobekScript = GetComponent<Cash0408>();
 
         // Inicjalizacja gry
         InitializeGame();
@@ -43,17 +60,14 @@ public class GameManager : MonoBehaviour
     {
         // Mo¿esz tutaj dodaæ dowoln¹ logikê inicjalizacji gry, jeœli jest potrzebna
         // Na przyk³ad, ustawienie pocz¹tkowych wartoœci dla zmiennych w skrypcie Zarobek.
-        zarobekScript.Cash = 0;
-        zarobekScript.Life = 100;
-        zarobekScript.Body = 100;
-        zarobekScript.Aktywnosc = 100;
-
-        Debug.Log($"Initialize:<color=yellow>{zarobekScript.Cash}</color>");
-        Debug.Log($"Initialize:<color=yellow>{zarobekScript.Life}</color>");
 
         // Uruchomienie metody StartMe() w skrypcie Zarobek
-        zarobekScript.StartMe();
+        if (zarobekScript != null)
+        {
+            zarobekScript.StartMe();
+        }
 
+        // Wywo³anie zdarzenia onGameManagerStart
         onGameManagerStart.Invoke();
     }
 }
