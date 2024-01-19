@@ -30,10 +30,7 @@ public class Cash0408 : MonoBehaviour
     // Funkcja g³ówna
     public void StartMe()
     {
-        //zarobekScript.StartMe();
-        //int cashValue = zarobekScript.Cash;
-        Cash = 10;
-        Mood = 100;
+
         StartCoroutine(Loopings());
     }
     IEnumerator Loopings()
