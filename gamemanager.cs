@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
@@ -12,10 +12,24 @@ public class GameManager : MonoBehaviour
     int Life;
     int PracaFizyczna;
     int Body;
+    int Mood;
     public UnityEvent onGameManagerStart;
+    public Text CastText;
 
     private void Start()
     {
+        Cash = 10;
+        Life = 0;
+        Body = 0;
+        Mood = 100;
+
+        CastText.text = "Cash" + Cash;
+
+        Debug.Log(Cash);
+        Debug.Log(Life);
+        Debug.Log(Mood);
+        Debug.Log(PracaFizyczna);
+        Debug.Log(Body);
 
         // Tworzymy instancjê skryptu Zarobek i przypisujemy do zmiennej zarobekScript
         zarobekScript = gameObject.AddComponent<Cash0408>();
@@ -41,7 +55,5 @@ public class GameManager : MonoBehaviour
         zarobekScript.StartMe();
 
         onGameManagerStart.Invoke();
-
     }
 }
-

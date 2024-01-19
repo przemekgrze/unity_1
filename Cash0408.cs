@@ -11,13 +11,18 @@ public class Cash0408 : MonoBehaviour
     public int Life;
     public int Body;
     public int Aktywnosc;
+    public int Mood;
     public Cash0408 zarobekScript;
     public UnityEvent onZarobekStart;
+    public Text cashTextObject;     // Text object to be presented
+    public Text cashText;
 
     bool PracaFizyczna = true;
     bool WyjazdDubai = true;
     bool FalszowanieFaktur = true;
     bool SpolkaMaltaCypr = true;
+
+
 
     // Dodaj now¹ publiczn¹ flagê, która bêdzie informowaæ o rozpoczêciu zarabiania.
     public bool StartEarning { get; private set; }
@@ -27,7 +32,8 @@ public class Cash0408 : MonoBehaviour
     {
         //zarobekScript.StartMe();
         //int cashValue = zarobekScript.Cash;
-        onZarobekStart?.Invoke();
+        Cash = 10;
+        Mood = 100;
         StartCoroutine(Loopings());
     }
     IEnumerator Loopings()
@@ -52,6 +58,7 @@ public class Cash0408 : MonoBehaviour
                         Cash += 10; // dodanie 10 z³ do konta
                         Debug.Log("Zarobi³eœ 10 z³ z tytu³u pracy fizycznej.");
                         Debug.Log("Twój stan konta: " + Cash + " z³");
+                        cashTextObject.text = $"Cash: {Cash} z³";
                     }
                     else
                     {
@@ -64,8 +71,11 @@ public class Cash0408 : MonoBehaviour
                     if (WyjazdDubai && (Aktywnosc >= 50 || Life >= 50))
                     {
                         Cash += 1000; // dodanie 1000 z³ do konta
+                        Mood -= 200;
                         Debug.Log("Zarobi³eœ 1000 z³ z tytu³u wyjazdu do Dubaju.");
                         Debug.Log("Twój stan konta: " + Cash + " z³");
+                        cashTextObject.text = $"Cash: {Cash} z³";
+
                     }
                     else
                     {
@@ -80,6 +90,8 @@ public class Cash0408 : MonoBehaviour
                         Cash += 500;
                         Debug.Log("Zarobi³eœ 500 z³ z tytu³u fa³szowania faktur.");
                         Debug.Log("Twój stan konta: " + Cash + " z³");
+                        cashTextObject.text = $"Cash: {Cash} z³";
+
                     }
                     else
                     {
@@ -93,6 +105,8 @@ public class Cash0408 : MonoBehaviour
                         Cash += 5000; // dodanie 5000 z³ do konta
                         Debug.Log("Zarobi³eœ 5000 z³ z tytu³u spó³ki na Malcie/Cyprze.");
                         Debug.Log("Twój stan konta: " + Cash + " z³");
+                        cashTextObject.text = $"Cash: {Cash} z³";
+
                     }
                     else
                     {
@@ -103,8 +117,7 @@ public class Cash0408 : MonoBehaviour
                 default:
                     Debug.Log("Niepoprawna opcja. Spróbuj ponownie.");
                     break;
-            }
-            yield return new WaitForSeconds(1);
+                    }
         }
     }
 }
