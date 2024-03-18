@@ -114,7 +114,8 @@ public class Cash0408 : MonoBehaviour
                 default:
                     Debug.Log("Niepoprawna opcja. Spróbuj ponownie.");
                     break;
-                    }
+            }
+            yield return new WaitForSeconds(1);
         }
     }
 }
